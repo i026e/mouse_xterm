@@ -20,7 +20,10 @@
     (at your option) any later version.
 END_DOC
 
-source $(dirname $)/variable.sh
+#script_dir="$(dirname "$(readlink -f "$0")")"
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+source "${script_dir}/variable.sh"
 
 # Mouse track status : 1 tracking; 0 Not tracking
 mouse_track_status=0
@@ -147,8 +150,8 @@ function mouse_track_bindings {
   done
 
   # Bind -X
-  i=($s_bindx_1 $s_bindx_2 $s_bindx_3 $s_bindx_4)
-  j=($s_macrox_1 $s_macrox_2 $s_macrox_3 $s_macrox_4)
+  i=($s_bindx_1 $s_bindx_2 $s_bindx_3 $s_bindx_4 $s_bindx_5)
+  j=($s_macrox_1 $s_macrox_2 $s_macrox_3 $s_macrox_4 $s_macrox_5)
   for (( k=0; k<${#i[@]}; k++ )) ; do
     mouse_track_log "binding -x ${i[k]} -> ${j[k]}"
     bind -x \"${i[k]}\":${j[k]}
@@ -164,7 +167,7 @@ function mouse_track_start {
   trap 'mouse_track_trap_disable_mouse' DEBUG
 
   # Enable mouse tracking after command return
-  export PROMPT_COMMAND+='mouse_track_echo_enable;'
+  #export PROMPT_COMMAND+='mouse_track_echo_enable;'
 
   # Enable now anyway
   mouse_track_echo_enable

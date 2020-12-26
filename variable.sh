@@ -37,3 +37,8 @@ s_macrox_4="mouse_track_void_cb"
 ## C-l -> reenable the mouse
 s_bind_4="\C-l"
 s_macro_4="\"\C-91\C-92\""
+
+
+## Alt-l -> reenable the mouse
+s_bindx_5="\el"
+s_macrox_5="mouse_track_echo_enable"
